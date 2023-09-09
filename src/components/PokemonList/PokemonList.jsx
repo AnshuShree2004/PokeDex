@@ -62,7 +62,7 @@ const DEFAULT_URL = "https://pokeapi.co/api/v2/pokemon"
 
         <div className='pokemon-list'>
         {
-            pokemonList.map(pokemon => <Pokemon  name= {pokemon.name} url = {pokemon.image} key = {pokemon.id}/>)
+            pokemonList.map(pokemon => <Pokemon  name= {pokemon.name} url = {pokemon.image} key = {pokemon.id} id={pokemon.id}/>)
         }
         </div>
         
