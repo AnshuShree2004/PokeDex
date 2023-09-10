@@ -1,35 +1,12 @@
-import { useEffect, useState } from 'react'
+
+import usePokemon from '../../hooks/usePokemon'
 import './PokemonDetails.css'
 import { Link, useParams } from 'react-router-dom'
-import axios from 'axios'
+
 
 function PokemonDetails() {
     const { id } = useParams()
-    const POKEMON_DETAILS_URL = `https://pokeapi.co/api/v2/pokemon/${id}` // Template literal to include id in URL
-
-    const [pokemon, setPokemon] = useState(null)
-
-    async function downloadPokemon() {
-        try {
-            const response = await axios.get(POKEMON_DETAILS_URL)
-            const pokemonData = response.data
-
-            setPokemon({
-                name: pokemonData.name,
-                height: pokemonData.height,
-                weight: pokemonData.weight,
-                types: pokemonData.types,
-                image: pokemonData.sprites.other.dream_world.front_default,
-            })
-        } catch (error) {
-            console.error('Error fetching Pokemon details:', error)
-        }
-    }
-
-    useEffect(() => {
-        downloadPokemon()
-    }, [id]) // Added 'id' as a dependency to the useEffect so it fetches data when 'id' changes
-
+    const [pokemon] = usePokemon(id)
     return (
         <>
             <h1 className='pokemon-redirect-link'>
